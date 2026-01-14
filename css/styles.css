@@ -1,0 +1,185 @@
+/* ===== Reset mínimo ===== */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.4;
+  background: #fafafa;
+  color: #111;
+}
+
+/* ===== Layout general ===== */
+header, main, footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+header {
+  border-bottom: 1px solid #ddd;
+}
+
+footer {
+  border-top: 1px solid #ddd;
+  text-align: center;
+  opacity: 0.85;
+}
+
+/* Hacemos que el contenido no quede tan “arriba” */
+main {
+  min-height: 60vh;
+}
+
+/* ===== Títulos ===== */
+h1 { margin: 0; font-size: 26px; }
+h2 { margin: 16px 0 8px; font-size: 20px; }
+h3 { margin: 12px 0 8px; font-size: 16px; }
+
+/* ===== Secciones (tarjetas simples) ===== */
+section {
+  margin: 16px 0;
+  padding: 14px;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  background: #fff;
+}
+
+/* ===== Formularios ===== */
+form {
+  margin-top: 10px;
+}
+
+label {
+  font-weight: 600;
+}
+
+input {
+  width: 100%;
+  max-width: 440px;
+  padding: 10px 12px;
+  margin-top: 6px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+/* ===== Botones ===== */
+button {
+  padding: 12px 16px;
+  border: 1px solid #333;
+  border-radius: 12px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  opacity: 0.92;
+}
+
+/* ===== Menú ===== */
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav li {
+  margin: 10px 0;
+}
+
+/* ===== Tabla transacciones ===== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  background: #fff;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+thead th {
+  background: #f5f5f5;
+}
+
+/* ===== Utilidades simples ===== */
+.center {
+  text-align: center;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 600px) {
+  header, main, footer { padding: 12px; }
+
+  button {
+    width: 100%;
+  }
+
+  input {
+    max-width: 100%;
+  }
+}
+/* ===== Títulos ===== */
+h1 { margin: 0; font-size: 26px; }
+h2 { margin: 16px 0 8px; font-size: 20px; }
+h3 { margin: 12px 0 8px; font-size: 16px; }
+
+h1, h2, h3 {
+  text-align: center;
+}
+/* ===== Contenido centrado global ===== */
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+main > * {
+  width: 100%;
+  max-width: 600px;
+}
+/* ===== Menú centrado ===== */
+nav ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* centra los botones */
+}
+/* ===== Botones del login centrados ===== */
+.login-actions {
+  display: flex;
+  justify-content: center; /* centra horizontal */
+  gap: 16px;               /* espacio entre botones */
+  margin-top: 20px;
+}
+
+/* ===== Filas de formulario ===== */
+.form-row {
+  display: flex;
+  align-items: center;       /* alinea verticalmente */
+  justify-content: center;   /* centra la fila */
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+/* Labels alineados y mismo ancho */
+.form-row label {
+  width: 120px;              /* todos iguales */
+  text-align: right;
+  font-weight: 600;
+}
+
+/* Inputs mismo tamaño */
+.form-row input {
+  width: 320px;              /* ancho fijo y consistente */
+  max-width: 100%;
+}
