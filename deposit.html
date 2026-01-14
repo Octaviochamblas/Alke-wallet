@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Depósito | Alke Wallet</title>
+</head>
+
+<body>
+
+  <header>
+    <h1>Alke Wallet</h1>
+  </header>
+
+  <main>
+    <h2>Depósito</h2>
+
+    <!-- En Paso 2: solo estructura HTML -->
+    <section>
+      <h3>Saldo disponible</h3>
+      <p>$ <span id="balance">0</span></p>
+      <!-- En JS (Paso 5) esto se actualizará -->
+    </section>
+
+    <section>
+      <h3>Realizar depósito</h3>
+
+      <form>
+        <label for="amount">Monto a depositar:</label><br />
+        <input
+          id="amount"
+          type="number"
+          min="1"
+          step="1"
+          required
+          placeholder="Ej: 10000"
+        />
+
+        <br /><br />
+
+        <button type="button">
+          Realizar depósito
+        </button>
+      </form>
+
+      <p id="depositMessage"></p>
+      <!-- En JS (Paso 5) aquí mostraremos mensajes -->
+    </section>
+
+    <br />
+
+    <button type="button" onclick="location.href='menu.html'">
+      Volver al menú
+    </button>
+  </main>
+
+  <footer>
+    <p>Alke Wallet © 2026</p>
+  </footer>
+
+</body>
+</html>

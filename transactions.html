@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Últimos movimientos | Alke Wallet</title>
+</head>
+
+<body>
+
+  <header>
+    <h1>Alke Wallet</h1>
+  </header>
+
+  <main>
+    <h2>Últimos movimientos</h2>
+
+    <section>
+      <h3>Historial de transacciones</h3>
+
+      <!-- Mensaje cuando no hay movimientos -->
+      <p id="noTransactions">
+        No hay movimientos registrados.
+      </p>
+
+      <!-- Tabla preparada para llenarse dinámicamente -->
+      <table border="1" cellpadding="8">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Tipo</th>
+            <th>Detalle</th>
+            <th>Monto</th>
+          </tr>
+        </thead>
+
+        <tbody id="transactionsList">
+          <!-- Aquí se agregarán las transacciones reales -->
+        </tbody>
+      </table>
+    </section>
+
+    <br />
+
+    <button type="button" onclick="location.href='menu.html'">
+      Volver al menú
+    </button>
+  </main>
+
+  <footer>
+    <p>Alke Wallet © 2026</p>
+  </footer>
+
+</body>
+</html>

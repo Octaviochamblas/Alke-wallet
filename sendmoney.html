@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enviar dinero | Alke Wallet</title>
+</head>
+
+<body>
+
+  <header>
+    <h1>Alke Wallet</h1>
+  </header>
+
+  <main>
+    <h2>Enviar dinero</h2>
+
+    <section>
+      <h3>Datos del destinatario</h3>
+
+      <form>
+        <label for="contact">Contacto:</label><br />
+        <input
+          id="contact"
+          type="text"
+          required
+          placeholder="Nombre del contacto"
+        />
+
+        <br /><br />
+
+        <label for="amount">Monto a enviar:</label><br />
+        <input
+          id="amount"
+          type="number"
+          min="1"
+          step="1"
+          required
+          placeholder="Ej: 5000"
+        />
+
+        <br /><br />
+
+        <button type="button">
+          Enviar dinero
+        </button>
+      </form>
+    </section>
+
+    <br />
+
+    <button type="button" onclick="location.href='menu.html'">
+      Volver al menú
+    </button>
+  </main>
+
+  <footer>
+    <p>Alke Wallet © 2026</p>
+  </footer>
+
+</body>
+</html>
