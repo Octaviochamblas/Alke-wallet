@@ -28,7 +28,7 @@
     <section class="card shadow-sm">
       <div class="card-body">
 
-        <form>
+        <form id="loginForm">
           <div class="mb-3">
             <label for="username" class="form-label">Usuario</label>
             <input
@@ -52,7 +52,7 @@
               placeholder="Escriba su contraseña"
             />
           </div>
-
+            <p id="loginMessage" class="text-center mt-3 mb-0"></p>
           <div class="d-flex justify-content-center gap-2 mt-4">
             <button
               type="button"
@@ -61,11 +61,8 @@
               Volver al Inicio
             </button>
 
-            <button
-              type="button"
-              class="btn btn-primary"
-              onclick="location.href='menu.html'">
-              Ingresar
+            <button type="submit" class="btn btn-primary">
+                Ingresar
             </button>
           </div>
         </form>
@@ -84,5 +81,6 @@
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
   </script>
+  <script src="js/login.js"></script>
 </body>
 </html>
