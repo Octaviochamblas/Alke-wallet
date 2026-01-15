@@ -1,26 +1,28 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const transactionsList = document.getElementById("transactionsList");
-  const noTransactions = document.getElementById("noTransactions");
+$(document).ready(function () {
+  const $list = $("#transactionsList");
+  const $noTx = $("#noTransactions");
 
   const transactions = JSON.parse(localStorage.getItem("transactions")) || [];
 
   if (transactions.length === 0) {
-    noTransactions.style.display = "block";
+    $noTx.show();
     return;
   }
 
-  noTransactions.style.display = "none";
+  $noTx.hide();
 
-  transactions.forEach(tx => {
-    const tr = document.createElement("tr");
-
-    tr.innerHTML = `
-      <td>${tx.date}</td>
-      <td>${tx.type}</td>
-      <td>${tx.detail}</td>
-      <td>$${tx.amount}</td>
+  transactions.forEach((tx) => {
+    const row = `
+      <tr>
+        <td>${tx.date}</td>
+        <td>${tx.type}</td>
+        <td>${tx.detail}</td>
+        <td>$${tx.amount}</td>
+      </tr>
     `;
-
-    transactionsList.appendChild(tr);
+    $list.append(row);
   });
+
+  // Efecto suave al cargar tabla
+  $("table").hide().fadeIn(200);
 });

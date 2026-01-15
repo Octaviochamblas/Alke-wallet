@@ -1,52 +1,103 @@
-const amountInput = document.getElementById("amount");
-const contactInput = document.getElementById("contact");
-const sendBtn = document.getElementById("sendBtn");
-const message = document.getElementById("message");
+$(document).ready(function () {
+  const $amount = $("#amount");
+  const $contact = $("#contact");
+  const $sendBtn = $("#sendBtn");
+  const $message = $("#message");
+  const $suggestions = $("#contactSuggestions");
 
-// Obtener saldo y transacciones
-let balance = parseInt(localStorage.getItem("balance")) || 0;
-let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+  // Datos
+  let balance = parseInt(localStorage.getItem("balance")) || 0;
+  let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
 
-sendBtn.addEventListener("click", () => {
-  const amount = parseInt(amountInput.value);
-  const contact = contactInput.value.trim();
+  // Lista simple de contactos (puedes ampliarla)
+  let contacts = JSON.parse(localStorage.getItem("contacts")) || ["Tavo", "Belén", "Camila", "Pablo"];
 
-  if (!contact) {
-    message.textContent = "Ingrese un contacto";
-    message.style.color = "red";
-    return;
+  // Guardar contactos si aún no existen
+  localStorage.setItem("contacts", JSON.stringify(contacts));
+
+  function showMessage(text, ok) {
+    $message
+      .text(text)
+      .removeClass("text-success text-danger")
+      .addClass(ok ? "text-success" : "text-danger")
+      .hide()
+      .fadeIn(150);
   }
 
-  if (isNaN(amount) || amount <= 0) {
-    message.textContent = "Ingrese un monto válido";
-    message.style.color = "red";
-    return;
+  function saveAll() {
+    localStorage.setItem("balance", balance);
+    localStorage.setItem("transactions", JSON.stringify(transactions));
+    localStorage.setItem("contacts", JSON.stringify(contacts));
   }
 
-  if (amount > balance) {
-    message.textContent = "Saldo insuficiente";
-    message.style.color = "red";
-    return;
-  }
+  // Autocompletar: filtra mientras escribes
+  $contact.on("input", function () {
+    const q = $contact.val().trim().toLowerCase();
 
-  // Descontar saldo
-  balance -= amount;
-  localStorage.setItem("balance", balance);
+    $suggestions.empty();
 
-  // Crear transacción
-  const transaction = {
-    date: new Date().toLocaleString(),
-    type: "Envío",
-    detail: contact,
-    amount: amount
-  };
+    if (!q) {
+      $suggestions.hide();
+      return;
+    }
 
-  transactions.push(transaction);
-  localStorage.setItem("transactions", JSON.stringify(transactions));
+    const matches = contacts.filter((c) => c.toLowerCase().includes(q)).slice(0, 5);
 
-  message.textContent = "Envío realizado con éxito";
-  message.style.color = "green";
+    if (matches.length === 0) {
+      $suggestions.hide();
+      return;
+    }
 
-  amountInput.value = "";
-  contactInput.value = "";
+    matches.forEach((name) => {
+      const $item = $(`<button type="button" class="list-group-item list-group-item-action">${name}</button>`);
+      $item.on("click", function () {
+        $contact.val(name);
+        $suggestions.hide();
+      });
+      $suggestions.append($item);
+    });
+
+    $suggestions.slideDown(120);
+  });
+
+  // Ocultar sugerencias si haces click fuera
+  $(document).on("click", function (e) {
+    if (!$(e.target).closest("#contact, #contactSuggestions").length) {
+      $suggestions.hide();
+    }
+  });
+
+  // Enviar dinero
+  $sendBtn.on("click", function () {
+    const amount = parseInt($amount.val(), 10);
+    const contactName = $contact.val().trim();
+
+    if (!contactName) return showMessage("Ingrese un contacto", false);
+    if (isNaN(amount) || amount <= 0) return showMessage("Ingrese un monto válido", false);
+    if (amount > balance) return showMessage("Saldo insuficiente", false);
+
+    // Descontar
+    balance -= amount;
+
+    // Registrar transacción
+    transactions.push({
+      date: new Date().toLocaleString(),
+      type: "Envío",
+      detail: contactName,
+      amount: amount
+    });
+
+    // Guardar contacto nuevo si no existe
+    if (!contacts.some((c) => c.toLowerCase() === contactName.toLowerCase())) {
+      contacts.push(contactName);
+    }
+
+    saveAll();
+
+    showMessage("Envío realizado con éxito", true);
+
+    $amount.val("");
+    $contact.val("");
+    $suggestions.hide();
+  });
 });

@@ -1,34 +1,46 @@
-const balanceSpan = document.getElementById("balance");
-const amountInput = document.getElementById("amount");
-const depositBtn = document.getElementById("depositBtn");
-const message = document.getElementById("depositMessage");
+$(document).ready(function () {
+  const $balance = $("#balance");
+  const $amount = $("#amount");
+  const $msg = $("#depositMessage");
+  const $btn = $("#depositBtn");
 
-let balance = localStorage.getItem("balance");
+  let balance = parseInt(localStorage.getItem("balance")) || 0;
+  let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
 
-if (balance === null) {
-  balance = 0;
-  localStorage.setItem("balance", balance);
-} else {
-  balance = parseInt(balance);
-}
-
-balanceSpan.textContent = balance;
-
-depositBtn.addEventListener("click", () => {
-  const amount = parseInt(amountInput.value);
-
-  if (isNaN(amount) || amount <= 0) {
-    message.textContent = "Ingrese un monto válido";
-    message.style.color = "red";
-    return;
+  function renderBalance() {
+    $balance.text(balance);
   }
 
-  balance += amount;
-  localStorage.setItem("balance", balance);
+  function showMessage(text, ok) {
+    $msg
+      .text(text)
+      .removeClass("text-success text-danger")
+      .addClass(ok ? "text-success" : "text-danger")
+      .hide()
+      .fadeIn(150);
+  }
 
-  balanceSpan.textContent = balance;
-  message.textContent = "Depósito realizado con éxito";
-  message.style.color = "green";
+  renderBalance();
 
-  amountInput.value = "";
+  $btn.on("click", function () {
+    const amount = parseInt($amount.val(), 10);
+
+    if (isNaN(amount) || amount <= 0) return showMessage("Ingrese un monto válido", false);
+
+    balance += amount;
+    localStorage.setItem("balance", balance);
+
+    transactions.push({
+      date: new Date().toLocaleString(),
+      type: "Depósito",
+      detail: "Depósito",
+      amount: amount
+    });
+    localStorage.setItem("transactions", JSON.stringify(transactions));
+
+    renderBalance();
+    showMessage("Depósito realizado con éxito", true);
+
+    $amount.val("");
+  });
 });
