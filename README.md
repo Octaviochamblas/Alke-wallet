@@ -6,36 +6,19 @@ Billetera virtual desarrollada con HTML, CSS, Bootstrap, JavaScript y jQuery.
 - Usuario: admin
 - Contraseña: 1234
 
-### 📌 Descripción
+## Funcionalidades
+- Login con validación y sesión (localStorage)
+- Depósitos y saldo persistente (localStorage)
+- Envío de dinero con validación de saldo
+- Registro de movimientos (depósitos y envíos)
+- Mejoras UI con jQuery (mensajes dinámicos, autocompletar)
 
-Este Pull Request incorpora la documentación oficial del proyecto **Alke Wallet**, con el objetivo de cerrar el flujo de trabajo solicitado en el Paso 7 (Fundamentos de Git y GitHub).
+## Ejecución
+Recomendado: usar Live Server (VS Code) o GitHub Pages.
 
-La documentación describe el funcionamiento general de la aplicación, credenciales de acceso, principales funcionalidades implementadas y la estructura de ramas utilizada durante el desarrollo.
-
----
-
-### ✅ Cambios realizados
-- Se agrega archivo `README.md` en la rama `feature/readme`
-- Se documentan:
-  - Credenciales de acceso
-  - Funcionalidades principales
-  - Uso de localStorage
-  - Flujo de desarrollo por ramas (feature branches)
-  - Recomendaciones de ejecución (Live Server / GitHub Pages)
-
----
-
-### 🔀 Flujo de trabajo
-- Desarrollo realizado en rama `feature/readme`
-- Pull Request hacia `main`
-- Merge final realizado desde GitHub
-
-Este PR demuestra el uso correcto de ramas, commits descriptivos y Pull Requests para revisión e integración de código.
-
----
-
-### 🧪 Estado del proyecto
-✔ Aplicación funcional  
-✔ Código integrado en `main`  
-✔ Cumple con los requisitos del Paso 7  
-
+## Estructura de ramas
+- main: versión estable
+- feature/login: login
+- feature/depositos: depósitos y saldo
+- feature/transacciones: envío y movimientos
+- feature/jquery: mejoras del paso 6
